@@ -45,6 +45,21 @@ body {
   color: #e0e0e0;
 }
 
+.pause-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #e0e0e0;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pause-btn:hover {
+  background: #444;
+}
+
 .clock {
   --size: 420px;
   width: var(--size);
@@ -84,7 +99,7 @@ body {
   mask: radial-gradient(circle, transparent 55%, black 55%);
   -webkit-mask: radial-gradient(circle, transparent 55%, black 55%);
   z-index: 3;
-  animation: fill-seconds 1s steps(60) infinite;
+  animation: fill-seconds 15s steps(60) infinite;
 }
 
 /* Middle ring: minutes - 60 discrete ticks, 1 per minute */
