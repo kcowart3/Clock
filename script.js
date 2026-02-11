@@ -1,22 +1,21 @@
-const loadTime = Date.now();
+const secondsEl = document.querySelector(".seconds");
+const minutesEl = document.querySelector(".minutes");
+const hoursEl = document.querySelector(".hours");
 
-function updateDigitalClock() {
-  const elapsedMs = Date.now() - loadTime;
-  const analogSecondsTotal = Math.floor((elapsedMs / 1000) * 60);
+function updateClock() {
+  const now = new Date();
+  const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
+  const minutes = now.getMinutes() + now.getSeconds() / 60;
+  const hours = (now.getHours() % 12) + now.getMinutes() / 60;
 
-  const sec = analogSecondsTotal % 60;
-  const min = Math.floor(analogSecondsTotal / 60) % 60;
-  let hr = Math.floor(analogSecondsTotal / 3600) % 12;
-  if (hr === 0) hr = 12;
+  const secondsAngle = (seconds / 60) * 360;
+  const minutesAngle = (minutes / 60) * 360;
+  const hoursAngle = (hours / 12) * 360;
 
-  const display = [
-    hr.toString().padStart(2, "0"),
-    min.toString().padStart(2, "0"),
-    sec.toString().padStart(2, "0")
-  ].join(":");
-
-  document.getElementById("digitalClock").textContent = display;
+  secondsEl.style.setProperty("--seconds-angle", `${secondsAngle}deg`);
+  minutesEl.style.setProperty("--minutes-angle", `${minutesAngle}deg`);
+  hoursEl.style.setProperty("--hours-angle", `${hoursAngle}deg`);
 }
 
-updateDigitalClock();
-setInterval(updateDigitalClock, 50);
+updateClock();
+setInterval(updateClock, 100);
